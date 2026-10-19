@@ -1860,12 +1860,12 @@ function renderGroups(){
     el.querySelector(".gb-name").textContent = g.item;
     el.querySelector(".gb-share").addEventListener("click", async () => {
       /* برای کار کردن لینک، آدرس واقعی سایت را در SITE_URL بنویسید (مثلاً https://example.ir/) */
-      const SITE_URL = "";
+      const SITE_URL = "https://meisam333.github.io/Samanshimi2/";
       const base = SITE_URL || (/^https?:$/.test(location.protocol) ? location.origin + location.pathname : "");
       const link = base ? base + "?group=" + encodeURIComponent(g.cas) + "#" + el.id : "";
       const text = `با پیوستن به خرید گروهی ${g.item} در سامان شیمی، قیمت برای همه کمتر می‌شود.` + (link ? "\n" + link : "");
       try { window.track("share_group", {item:g.item}); } catch(e){}
-      if(navigator.share){ try { await navigator.share(link ? {title:"سامان شیمی", text, url:link} : {title:"سامان شیمی", text}); return; } catch(e){ return; } }
+      if(navigator.share){ try { await navigator.share({text}); return; } catch(e){ return; } }
       window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener");
     });
     el.querySelector(".thumb").innerHTML = icon(g.cat);
